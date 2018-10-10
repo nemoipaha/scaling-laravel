@@ -17,18 +17,26 @@
 
         data() {
             return {
-                processing: false
+                processing: false,
+                task_id: undefined
             };
         },
 
         methods: {
             createJob() {
                 axios.post('/job')
-                    .then(() => {
+                    .then((response) => {
                         this.processing = true;
+                        this.task_id = response.data.job;
+
+                        Echo.private(`user.task.${this.task_id}`)
+                            .listen('TaskCompleted', (e) => {
+                                this.processing = false;
+                                this.task_id = undefined;
+                            });
                     })
                     .catch(error => {
-
+                        console.log(error);
                     })
             }
         }

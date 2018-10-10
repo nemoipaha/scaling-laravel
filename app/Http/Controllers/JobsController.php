@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\LongRunningJob;
+use Illuminate\Support\Facades\Queue;
 
 class JobsController extends Controller
 {
@@ -17,10 +18,8 @@ class JobsController extends Controller
 
     public function startJob()
     {
-        dispatch(new LongRunningJob());
-
         return [
-            'status' => 'success'
+            'job' => Queue::push(new LongRunningJob())
         ];
     }
 }
