@@ -1,12 +1,12 @@
 <template>
     <div class="panel-body">
-        <button class="btn btn-success" @click.prevent="createJob" v-if="!processing">
+        <button class="btn btn-success" @click.prevent="createJob" v-if="!tasks.length">
             <i class="glyphicon glyphicon-adjust"></i>
             Start long job
         </button>
         <button class="btn btn-success" v-else>
             <i class="glyphicon glyphicon-refresh rotate"></i>
-            Kick off long job
+            Job is processing
         </button>
     </div>
 </template>
@@ -17,27 +17,47 @@
 
         data() {
             return {
-                processing: false,
-                task_id: undefined
+                tasks: []
             };
         },
 
+        mounted() {
+            this.getTasks();
+        },
+
         methods: {
+            getTasks() {
+                axios.get('/tasks')
+                    .then(response => {
+                        console.log(
+                            'tasks fetch',
+                            response
+                        )
+
+                        this.tasks = response.data;
+
+                        _.each(this.tasks, (task) => {
+                            this.createTaskCompletedListener(task.id);
+                        });
+                    });
+            },
+
             createJob() {
                 axios.post('/job')
                     .then((response) => {
-                        this.processing = true;
-                        this.task_id = response.data.job;
-
-                        Echo.private(`user.task.${this.task_id}`)
-                            .listen('TaskCompleted', (e) => {
-                                this.processing = false;
-                                this.task_id = undefined;
-                            });
+                        this.tasks.push(response.data);
+                        this.createTaskCompletedListener(response.data.id);
                     })
                     .catch(error => {
                         console.log(error);
                     })
+            },
+
+            createTaskCompletedListener(taskId) {
+                Echo.private(`user.task.${taskId}`)
+                    .listen('TaskCompleted', (e) => {
+                        this.getTasks();
+                    });
             }
         }
     }
