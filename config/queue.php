@@ -48,13 +48,22 @@ return [
             'retry_after' => 90,
         ],
 
-        'sqs' => [
-            'driver' => 'sqs',
-            'key' => 'your-public-key',
-            'secret' => 'your-secret-key',
-            'prefix' => 'https://sqs.us-east-1.amazonaws.com/your-account-id',
-            'queue' => 'your-queue-name',
-            'region' => 'us-east-1',
+        'sqs-primary' => [
+            'driver' => 'my-sqs',
+            'key' => env('AWS_ACCESS_KEY_ID', ''),
+            'secret' => env('AWS_SECRET_ACCESS_KEY', ''),
+            'prefix' => env('AWS_URL', ''),
+            'queue' => env('SQS_QUEUE_NAME', ''),
+            'region' => env('AWS_REGION', 'us-east-1'),
+        ],
+
+        'sqs-secondary' => [
+            'driver' => 'my-sqs',
+            'key' => env('AWS_ACCESS_KEY_ID', ''),
+            'secret' => env('AWS_SECRET_ACCESS_KEY', ''),
+            'prefix' => env('AWS_URL', ''),
+            'queue' => env('SQS_QUEUE_SECONDARY', ''),
+            'region' => env('AWS_REGION', 'us-east-1'),
         ],
 
         'redis' => [

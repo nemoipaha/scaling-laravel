@@ -89,6 +89,13 @@ return [
                 'processes' => 3,
                 'tries' => 3,
             ],
+            'supervisor-2' => [
+                'connection' => 'redis',
+                'queue' => ['default'],
+                'balance' => 'auto',
+                'processes' => 3,
+                'tries' => 3,
+            ],
         ],
     ],
 ];

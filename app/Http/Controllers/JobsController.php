@@ -26,7 +26,8 @@ class JobsController extends Controller
             'created_at' => new \DateTime()
         ]);
 
-        dispatch(new LongRunningJob($task->id));
+        dispatch(new LongRunningJob($task->id))
+            ->onQueue(env('SQS_QUEUE_SECONDARY'));
 
         return $task;
     }

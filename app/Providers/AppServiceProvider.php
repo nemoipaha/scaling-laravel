@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Analytics\Pageview;
 use App\Analytics\Pageviews;
 use App\Analytics\PageviewCache;
+use App\Queue\SqsConnector;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Horizon\Horizon;
 
@@ -22,6 +24,13 @@ class AppServiceProvider extends ServiceProvider
 
             return $user ? $user->email === 'admin@email.com' : false;
         });
+
+        Queue::extend(
+            'my-sqs',
+            function () {
+                return new SqsConnector();
+            }
+        );
     }
 
     /**
