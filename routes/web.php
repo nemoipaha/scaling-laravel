@@ -28,3 +28,5 @@ Route::get('/tasks', 'JobsController@getTasks');
 Route::get('/headers', function() {
     return view('headers');
 });
+
+Route::resource('/profile/image', 'ProfileImageController');

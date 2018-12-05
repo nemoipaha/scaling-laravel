@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\Analytics\Pageview;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,11 +26,13 @@ class HomeController extends Controller
         $daysBack = (int)request()->get('timeline', 7);
         $domain = request()->get('domain', null);
         $customer = request()->get('customer', null);
+        $image = Auth::user()->profileImage;
 
         return view('home', [
             'pageviews' => $pageViews->daysBack($daysBack, $domain, $customer),
             'domains' => $pageViews->domains(),
             'customers' => Customer::select('id')->where('user_id', auth()->user()->id)->get(),
+            'profileImage' => $image
         ]);
     }
 }

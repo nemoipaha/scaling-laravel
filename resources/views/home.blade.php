@@ -22,6 +22,10 @@
             <div class="panel panel-default">
                 <process-job></process-job>
             </div>
+
+            <div class="panel panel-default">
+                <profile-image profile_image="{{ optional($profileImage)->path }}"/>
+            </div>
         </div>
     </div>
 </div>
