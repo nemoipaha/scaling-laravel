@@ -21,11 +21,7 @@ class ProfileImageController extends Controller
             'profile' => 'required|image'
         ]);
 
-        $path = str_replace(
-            'public',
-            'storage',
-            $request->file('profile')->store('profile', 's3')
-        );
+        $path = $request->file('profile')->store('profile', 's3');
 
         $user = auth()->user();
 
