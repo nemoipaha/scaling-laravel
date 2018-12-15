@@ -1,7 +1,7 @@
 <template>
     <div class="panel-body">
-        <div class="form-group" v-if="path">
-            <img v-bind:src="path" class="img-circle" style="max-width: 200px;" />
+        <div class="form-group" v-if="imageId">
+            <img v-bind:src="imageUri" class="img-circle" style="max-width: 200px;" />
         </div>
         <div class="form-group">
             <label for="profile">Upload Profile Photo</label>
@@ -17,13 +17,19 @@
 
         data() {
             return {
-                path: null,
+                imageId: null,
+            }
+        },
+
+        computed: {
+            imageUri() {
+                return 'profile/image/' + this.imageId;
             }
         },
 
         mounted() {
             if (this.profile_image) {
-                this.path = this.profile_image
+                this.imageId = this.profile_image
             }
         },
 
@@ -43,7 +49,7 @@
 
                 axios.post('/profile/image', data, {})
                     .then(function (res) {
-                        vm.path = res.data.path;
+                        vm.imageId = res.data.id;
                     })
                     .catch(function (err) {
                         console.log('UPLOAD ERROR:', err.message);

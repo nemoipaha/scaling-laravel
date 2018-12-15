@@ -24,7 +24,7 @@
             </div>
 
             <div class="panel panel-default">
-                <profile-image profile_image="{{ optional($profileImage)->path }}"/>
+                <profile-image profile_image="{{ optional($profileImage)->id }}"/>
             </div>
         </div>
     </div>

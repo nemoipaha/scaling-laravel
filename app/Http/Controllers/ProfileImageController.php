@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Responses\S3FileStream;
 use App\ProfileImage;
 use Illuminate\Http\Request;
 
@@ -25,13 +26,22 @@ class ProfileImageController extends Controller
 
         $user = auth()->user();
 
-        ProfileImage::updateOrCreate([
+        $image = ProfileImage::updateOrCreate([
             'user_id' => $user->id
         ], [
             'user_id' => $user->id,
             'path' => $path,
         ]);
 
-        return response()->json(['path' => $path]);
+        return response()->json($image);
+    }
+
+    public function show(string $id)
+    {
+        $image = ProfileImage::where('user_id', auth()->user()->id)
+            ->findOrFail($id);
+
+        // Stream to browser
+        return (new S3FileStream($image))->output();
     }
 }
