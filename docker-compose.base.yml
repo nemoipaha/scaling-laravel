@@ -6,27 +6,27 @@ services:
       dockerfile: Dockerfile
     image: scalinglaravel/app
     volumes:
-     - .:/var/www/html
+      - .:/var/www/html
     networks:
-     - slnet
+      - slnet
   node:
     build:
       context: ./docker/node
       dockerfile: Dockerfile
     image: scalinglaravel.com/node
     volumes:
-     - .:/var/www/html
+      - .:/var/www/html
     networks:
-     - slnet
+      - slnet
   mysql:
     image: mysql:5.7
     volumes:
-     - mysqldata:/var/lib/mysql
+      - mysqldata:/var/lib/mysql
     networks:
      - slnet
   redis:
     image: redis:alpine
     volumes:
-     - redisdata:/data
+      - redisdata:/data
     networks:
-     - slnet
+      - slnet
