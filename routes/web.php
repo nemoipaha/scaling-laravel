@@ -20,3 +20,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/play', 'PlayController@index');
+
+Route::post('/job', 'JobsController@startJob');
+
+Route::get('/tasks', 'JobsController@getTasks');
+
+Route::get('/headers', function() {
+    return view('headers');
+});
+
+Route::resource('/profile/image', 'ProfileImageController');

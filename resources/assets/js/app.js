@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('process-job', require('./components/process-job.vue'));
+Vue.component('profile-image', require('./components/profile-image.vue'));
 
 const app = new Vue({
     el: '#app'

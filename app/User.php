@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -35,5 +36,15 @@ class User extends Authenticatable
     public function pageviews()
     {
         return $this->hasMany(Pageview::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function profileImage(): HasOne
+    {
+        return $this->hasOne(ProfileImage::class);
     }
 }
