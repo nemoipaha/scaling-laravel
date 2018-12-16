@@ -14,3 +14,12 @@
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel(
+    'user.task.{taskId}',
+    function (\App\User $user, string $taskId) {
+        $task = App\Task::find($taskId);
+
+        return (int) $user->id === (int) $task->user_id;
+    }
+);
