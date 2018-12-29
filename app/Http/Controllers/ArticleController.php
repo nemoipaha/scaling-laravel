@@ -30,7 +30,7 @@ class ArticleController extends Controller
         $currentVersion = md5($article->title . $article->body);
 
         if ($clientVersion !== $currentVersion) {
-            return abort(412, "Precondition Failed");
+            abort(412, "Precondition Failed");
         }
 
         // Update the article
