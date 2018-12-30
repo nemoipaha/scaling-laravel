@@ -28,6 +28,7 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
+        $schedule->command('sl:example')->everyMinute();
     }
 
     /**
