@@ -26,8 +26,10 @@ return [
      */
     'proxies' => [
         '192.168.1.10',
-        // aws load balancer ip
-        '18.196.184.132'
+        // aws load balancer
+        '18.196.184.132',
+        // forge cloud load balancer
+        '10.135.5.120'
     ],
 
     /*
