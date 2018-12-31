@@ -53,7 +53,7 @@ return [
             'key' => env('AWS_ACCESS_KEY_ID', ''),
             'secret' => env('AWS_SECRET_ACCESS_KEY', ''),
             'prefix' => env('AWS_URL', ''),
-            'queue' => env('SQS_QUEUE_NAME', ''),
+            'queue' => env('SQS_QUEUE_PRIMARY', ''),
             'region' => env('AWS_REGION', 'us-east-1'),
         ],
 

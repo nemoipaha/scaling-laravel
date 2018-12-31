@@ -20,6 +20,6 @@ Broadcast::channel(
     function (\App\User $user, string $taskId) {
         $task = App\Task::find($taskId);
 
-        return (int) $user->id === (int) $task->user_id;
+        return (int)$user->id === (int)$task->user_id;
     }
 );
