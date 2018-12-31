@@ -39,9 +39,9 @@ class LongRunningJob implements ShouldQueue
 
     private function completeTask(Task $task)
     {
-        event(new TaskCompleted($task->id));
-
         $task->complete();
+
+        event(new TaskCompleted($task->id));
 
         return $task;
     }
