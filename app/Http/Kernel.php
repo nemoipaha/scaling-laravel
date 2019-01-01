@@ -2,7 +2,7 @@
 
 namespace App\Http;
 
-use Fideloper\Proxy\TrustProxies;
+use App\Http\Middleware\TrustProxies;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
