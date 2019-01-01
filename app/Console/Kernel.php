@@ -29,7 +29,11 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
         $schedule->command('sl:example')->everyMinute();
-        $schedule->command('sl:cron')->everyMinute();
+        $schedule
+            ->command('sl:cron')
+            ->everyMinute()
+            ->withoutOverlapping()
+            ->onOneServer();
     }
 
     /**
