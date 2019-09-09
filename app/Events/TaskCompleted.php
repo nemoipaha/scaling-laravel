@@ -13,8 +13,6 @@ class TaskCompleted implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $connection = 'sqs-secondary';
-
     /**
      * @var string
      */
