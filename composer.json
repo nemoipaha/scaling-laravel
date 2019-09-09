@@ -19,7 +19,8 @@
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "1.2.*",
-        "phpunit/phpunit": "^8.0"
+        "phpunit/phpunit": "^8.0",
+        "wnx/laravel-stats": "^2.0"
     },
     "autoload": {
         "classmap": [
