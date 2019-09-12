@@ -13,3 +13,4 @@ npm-debug.log
 exports/*
 !exports/.gitkeep
 storage/debugbar/*
+mysqldata
