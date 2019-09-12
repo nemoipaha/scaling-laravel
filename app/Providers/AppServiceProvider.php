@@ -26,8 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(Pageview::class, function($app)
-        {
+        $this->app->singleton(Pageview::class, function($app) {
             return new PageviewCache(
                 new Pageviews(auth()->user())
             );
